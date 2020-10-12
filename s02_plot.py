@@ -4,8 +4,6 @@ import matplotlib.transforms as mtransforms
 from matplotlib.transforms import Bbox
 from graphviz import Digraph
 
-
-
 # Plot de grafo
 def draw_Digraph(nos,arestas,base):
 
@@ -27,3 +25,10 @@ def draw_Digraph(nos,arestas,base):
     print('Plot 01 - ok!')
     return g
 
+def add_root_node(G):
+    grafo = G
+    for i in list(grafo.nodes): 
+        ancestors = list(nx.ancestors(G, i))
+        if not ancestors:
+            grafo.add_edge(i, "Thing", label="is-a")
+    return grafo
